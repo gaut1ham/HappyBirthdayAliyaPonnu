@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Aliyosi & Ponnusii!</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600;700&display=swap">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #ffd6e7, #c1f0ff);
+            min-height: 100vh;
+            color: #5a3d5c;
+            overflow-x: hidden;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        /* Music Player */
+        .music-player {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 50px;
+            padding: 10px 20px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: all 0.3s;
+        }
+        
+        .music-player:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+        }
+        
+        .music-btn {
+            background: #ff6b9d;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+        }
+        
+        .music-btn:hover {
+            background: #ff4081;
+            transform: scale(1.1);
+        }
+        
+        .music-text {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #5a3d5c;
+        }
+        
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 30px 20px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .birthday-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3.5rem;
+            color: #ff4081;
+            margin-bottom: 15px;
+            text-shadow: 3px 3px 0 #ffcd3c;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .birthday-title::before, .birthday-title::after {
+            content: "🎂";
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2.5rem;
+        }
+        
+        .birthday-title::before {
+            left: -70px;
+        }
+        
+        .birthday-title::after {
+            right: -70px;
+        }
+        
+        .date-info {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 15px 25px;
+            border-radius: 50px;
+            display: inline-block;
+            font-size: 1.2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-top: 10px;
+        }
+        
+        .date-info span {
+            color: #ff4081;
+            font-weight: bold;
+        }
+        
+        /* Gallery Section */
+        .gallery-section {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 25px;
+            padding: 30px;
+            margin: 40px auto;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+            max-width: 900px;
+        }
+        
+        .gallery-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: #ff6b9d;
+            margin-bottom: 30px;
+            font-family: 'Dancing Script', cursive;
+        }
+        
+        .gallery-container {
+            position: relative;
+            height: 500px;
+            margin-bottom: 30px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            background: #f8f8f8;
+        }
+        
+        .gallery-image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: none;
+            transition: opacity 1s ease;
+            background: #f8f8f8;
+        }
+        
+        .image-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #f5f5f5, #e0e0e0);
+            color: #888;
+            font-size: 1.2rem;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .placeholder-number {
+            font-size: 4rem;
+            font-weight: bold;
+            color: #ff6b9d;
+            margin-bottom: 15px;
+        }
+        
+        .placeholder-text {
+            font-size: 1.1rem;
+            max-width: 80%;
+        }
+        
+        .active-image {
+            display: block;
+            animation: fadeIn 1s;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .image-counter {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 1rem;
+            z-index: 10;
+        }
+        
+        .image-caption {
+            text-align: center;
+            font-size: 1.4rem;
+            color: #ff6b9d;
+            margin-top: 15px;
+            font-weight: 600;
+            min-height: 40px;
+        }
+        
+        .gallery-controls {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .gallery-btn {
+            background: #ffcd3c;
+            border: none;
+            color: #5a3d5c;
+            padding: 12px 25px;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+            box-shadow: 0 5px 15px rgba(255, 205, 60, 0.4);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .gallery-btn:hover {
+            background: #ff6b9d;
+            color: white;
+            transform: translateY(-5px);
+        }
+        
+        .btn-prev i {
+            transform: rotate(180deg);
+        }
+        
+        .image-dots {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 25px;
+        }
+        
+        .dot {
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: #ccc;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .dot.active {
+            background: #ff6b9d;
+            transform: scale(1.3);
+        }
+        
+        /* Romantic GIF Section */
+        .romantic-gif-section {
+            text-align: center;
+            margin: 50px 0 30px;
+        }
+        
+        .romantic-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5rem;
+            color: #ff4081;
+            margin-bottom: 30px;
+        }
+        
+        .gif-grid {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 25px;
+            margin-top: 20px;
+        }
+        
+        .gif-item {
+            width: 220px;
+            height: 220px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s;
+            position: relative;
+        }
+        
+        .gif-item:hover {
+            transform: scale(1.08);
+            box-shadow: 0 15px 30px rgba(255, 107, 157, 0.3);
+        }
+        
+        .gif-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        /* Popup Message */
+        .popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 100;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .popup-content {
+            background: white;
+            border-radius: 30px;
+            padding: 40px;
+            max-width: 600px;
+            width: 100%;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            position: relative;
+            animation: popupAppear 0.5s;
+        }
+        
+        @keyframes popupAppear {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        .popup-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .popup-header h2 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.8rem;
+            color: #ff4081;
+        }
+        
+        .popup-message {
+            font-size: 1.3rem;
+            line-height: 1.7;
+            color: #5a3d5c;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .popup-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: #ffcd3c;
+            color: #5a3d5c;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .popup-close:hover {
+            background: #ff6b9d;
+            color: white;
+            transform: rotate(90deg);
+        }
+        
+        .open-popup-btn {
+            display: block;
+            margin: 30px auto;
+            background: linear-gradient(45deg, #ff6b9d, #ffcd3c);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.3rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+            box-shadow: 0 10px 20px rgba(255, 107, 157, 0.3);
+        }
+        
+        .open-popup-btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 25px rgba(255, 107, 157, 0.4);
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 40px;
+            color: #5a3d5c;
+            font-size: 1.2rem;
+            position: relative;
+        }
+        
+        .footer-heart {
+            color: #ff4081;
+            animation: heartbeat 1.5s infinite;
+            display: inline-block;
+        }
+        
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .birthday-title {
+                font-size: 2.5rem;
+            }
+            
+            .birthday-title::before {
+                left: -50px;
+            }
+            
+            .birthday-title::after {
+                right: -50px;
+            }
+            
+            .gallery-container {
+                height: 400px;
+            }
+            
+            .gif-item {
+                width: 180px;
+                height: 180px;
+            }
+            
+            .popup-content {
+                padding: 30px 20px;
+            }
+            
+            .popup-header h2 {
+                font-size: 2.2rem;
+            }
+            
+            .music-player {
+                top: 10px;
+                right: 10px;
+                padding: 8px 15px;
+            }
+            
+            .music-text {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .birthday-title {
+                font-size: 2rem;
+            }
+            
+            .birthday-title::before {
+                left: -40px;
+                font-size: 1.8rem;
+            }
+            
+            .birthday-title::after {
+                right: -40px;
+                font-size: 1.8rem;
+            }
+            
+            .gallery-container {
+                height: 300px;
+            }
+            
+            .gif-item {
+                width: 150px;
+                height: 150px;
+            }
+            
+            .gallery-btn {
+                padding: 10px 15px;
+                font-size: 1rem;
+            }
+        }
+        
+        /* Portrait Image Warning */
+        .image-warning {
+            text-align: center;
+            font-size: 0.9rem;
+            color: #888;
+            margin-top: 10px;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <!-- Music Player -->
+    <div class="music-player" id="music-player">
+        <button class="music-btn" id="music-toggle">
+            <i class="fas fa-play" id="music-icon"></i>
+        </button>
+        <div class="music-text" id="music-status">Music Playing</div>
+        <audio id="background-music" loop>
+            <source src="music.m4a" type="audio/mp4">
+            <source src="music.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+    </div>
+    
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1 class="birthday-title">Happy Birthday Aliya & Ponnu!</h1>
+            <div class="date-info">
+                Celebrating together on <span>March 18th</span> | Ponnu: March 19 | Aliyan: March 17
+            </div>
+        </header>
+        
+        <!-- Gallery Section -->
+        <section class="gallery-section">
+            <h2 class="gallery-title">Your Special Memories</h2>
+            
+            <div class="gallery-container">
+                <!-- Images will be loaded by JavaScript -->
+            </div>
+            
+            <div class="image-caption" id="image-caption">Beautiful moments together</div>
+            
+            <div class="gallery-controls">
+                <button class="gallery-btn btn-prev" id="prev-btn">
+                    <i class="fas fa-chevron-right"></i> Previous
+                </button>
+                <button class="gallery-btn btn-next" id="next-btn">
+                    Next <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+            
+            <div class="image-dots" id="image-dots">
+                <!-- Dots will be generated by JavaScript -->
+            </div>
+            
+            
+        </section>
+        
+        <!-- Romantic GIF Section -->
+        <section class="romantic-gif-section">
+            <h2 class="romantic-title">Celebrating Love & Togetherness</h2>
+            <div class="gif-grid">
+                <div class="gif-item">
+                    <img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExbzZlMmd3aGEwM3FwaDcxc2ZsaHZ1bGpjY3p2eDN2aDFyYTBlMmR4cCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/EiLpRH62ea9gWyHD74/giphy.gif" alt="Couple Dancing">
+                </div>
+                <div class="gif-item">
+                    <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExNGlqdTY4Z2I0ZXdteHpoeHpkOWp1OXR4NWJzajBxcm5rczJxem5jNSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/TGWupTUfjggj5sRG6P/giphy.gif" alt="Happy Couple">
+                </div>
+                <div class="gif-item">
+                    <img src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExNjg5cW03bDFkbmZqaDRiN3V2ZTByYXhma3dqa3Y3cGN1dHNlZWZ5NyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/UDmLwplVrsPjD9RY1N/giphy.gif" alt="Birthday Celebration">
+                </div>
+                <div class="gif-item">
+                    <img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExNG9kOTlvejAybWdyOGpzZjJta3hjMnJjZzh2bzZ3NGE5bXZoNW40ZyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/gnMnO2aVTPv87zgNK3/giphy.gif" alt="Love Couple">
+                </div>
+            </div>
+        </section>
+        
+        <!-- Popup Message Trigger -->
+        <button class="open-popup-btn" id="open-popup-btn">
+            <i class="fas fa-envelope-open-text"></i> Special Message from Gautham
+        </button>
+        
+        <!-- Popup Message -->
+        <div class="popup-overlay" id="popup-overlay">
+            <div class="popup-content">
+                <button class="popup-close" id="popup-close">&times;</button>
+                
+                <div class="popup-header">
+                    <h2>To My Dear Chechi & Aliyan</h2>
+                </div>
+                
+                <div class="popup-message">
+                    <p>Dear Aliya and Chechi,</p>
+                    <p>On this special day, I want to wish you both the happiest birthday ever! Even though your birthdays are on different dates, celebrating together on March 18th makes it doubly special and fun!</p>
+                    <p>May this year bring you endless joy, laughter, and beautiful moments together. You both deserve all the happiness in the world!</p>
+                    <p>Here's to creating more wonderful memories together. Enjoy your special day to the fullest!</p>
+                    <p>With lots of love and warm wishes,</p>
+                </div>
+                
+                <div style="text-align: center; font-size: 1.8rem; color: #ff4081; font-family: 'Dancing Script', cursive;">
+                    Gautham
+                </div>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <footer class="footer">
+            <p>Made with <span class="footer-heart">❤️</span> by Gaut1ham</p>
+            <p style="margin-top: 10px; font-size: 1rem; opacity: 0.8;">For the Best Chechi and Aliyan!</p>
+        </footer>
+    </div>
+
+    <script>
+        // Music Player Functionality
+        const musicPlayer = document.getElementById('music-player');
+        const musicToggle = document.getElementById('music-toggle');
+        const musicIcon = document.getElementById('music-icon');
+        const musicStatus = document.getElementById('music-status');
+        const backgroundMusic = document.getElementById('background-music');
+        
+        // Set initial volume (50%)
+        backgroundMusic.volume = 0.5;
+        
+        // Try to play music automatically when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            // Modern browsers require user interaction first
+            // We'll wait for first user interaction to play
+            let musicStarted = false;
+            
+            function startMusic() {
+                if (!musicStarted) {
+                    backgroundMusic.play().then(() => {
+                        musicStarted = true;
+                        musicIcon.className = 'fas fa-pause';
+                        musicStatus.textContent = 'Music Playing';
+                    }).catch(error => {
+                        console.log('Autoplay prevented:', error);
+                        musicStatus.textContent = 'Click to Play Music';
+                    });
+                }
+            }
+            
+            // Try to play on any user interaction
+            document.addEventListener('click', startMusic, { once: true });
+            document.addEventListener('touchstart', startMusic, { once: true });
+            document.addEventListener('keydown', startMusic, { once: true });
+            
+            // Also try after a short delay
+            setTimeout(startMusic, 1000);
+        });
+        
+        // Toggle play/pause
+        musicToggle.addEventListener('click', function(e) {
+            e.stopPropagation();
+            
+            if (backgroundMusic.paused) {
+                backgroundMusic.play();
+                musicIcon.className = 'fas fa-pause';
+                musicStatus.textContent = 'Music Playing';
+            } else {
+                backgroundMusic.pause();
+                musicIcon.className = 'fas fa-play';
+                musicStatus.textContent = 'Music Paused';
+            }
+        });
+        
+        // Update icon if music ends
+        backgroundMusic.addEventListener('ended', function() {
+            musicIcon.className = 'fas fa-play';
+            musicStatus.textContent = 'Music Ended';
+        });
+        
+        // Configuration
+        const imageConfig = {
+            totalImages: 7,
+            imageNames: ['img1.jpg', 'img2.jpg', 'img3.jpg', 'img4.jpg', 'img5.jpg', 'img6.jpg', 'img7.jpg'],
+            captions: [
+                "Beautiful moments together",
+                "Celebrating love and happiness",
+                "Making memories that last forever",
+                "The joy of being together",
+                "Laughter is the best gift",
+                "Cherishing every moment",
+                "Happy Birthday to both of you!"
+            ],
+            // Add image fallbacks in case some images don't load
+            fallbackImages: [
+                'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                'https://images.unsplash.com/photo-1530103862676-de8c9debad1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                'https://images.unsplash.com/photo-1497215728101-856f4ea42174?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                'https://images.unsplash.com/photo-1560448204-603b3fc33ddc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                'https://images.unsplash.com/photo-1542744095-fcf48d80b0fd?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                'https://images.unsplash.com/photo-1511988617509-a57c8a288659?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
+            ]
+        };
+        
+        // Gallery elements
+        const galleryContainer = document.querySelector('.gallery-container');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const currentImg = document.getElementById('current-img');
+        const imageCaption = document.getElementById('image-caption');
+        const imageDots = document.getElementById('image-dots');
+        let images = [];
+        let currentIndex = 0;
+        
+        // Initialize gallery
+        function initGallery() {
+            // Clear gallery container
+            galleryContainer.innerHTML = '';
+            
+            // Create image counter
+            const counterDiv = document.createElement('div');
+            counterDiv.className = 'image-counter';
+            counterDiv.innerHTML = `Image <span id="current-img">1</span> of ${imageConfig.totalImages}`;
+            galleryContainer.appendChild(counterDiv);
+            
+            // Create all image elements
+            for (let i = 0; i < imageConfig.totalImages; i++) {
+                const imgDiv = document.createElement('div');
+                imgDiv.className = 'image-placeholder';
+                imgDiv.id = `img-placeholder-${i}`;
+                imgDiv.innerHTML = `
+                    <div class="placeholder-number">${i + 1}</div>
+                    <div class="placeholder-text">Loading image ${imageConfig.imageNames[i]}...</div>
+                `;
+                
+                const imgElement = document.createElement('img');
+                imgElement.className = 'gallery-image';
+                imgElement.id = `img-${i}`;
+                imgElement.alt = `Birthday Memory ${i + 1}`;
+                imgElement.dataset.index = i;
+                imgElement.style.display = 'none';
+                
+                // Create a wrapper for the image
+                const imgWrapper = document.createElement('div');
+                imgWrapper.className = 'image-wrapper';
+                imgWrapper.style.width = '100%';
+                imgWrapper.style.height = '100%';
+                imgWrapper.style.display = 'none';
+                imgWrapper.appendChild(imgElement);
+                
+                galleryContainer.appendChild(imgDiv);
+                galleryContainer.appendChild(imgWrapper);
+                
+                // Load the image
+                loadImage(i);
+            }
+            
+            // Set first image as active
+            document.getElementById(`img-placeholder-0`).style.display = 'none';
+            const firstImgWrapper = galleryContainer.querySelector('.image-wrapper');
+            firstImgWrapper.style.display = 'block';
+            const firstImg = firstImgWrapper.querySelector('img');
+            firstImg.style.display = 'block';
+            firstImg.classList.add('active-image');
+            
+            // Create navigation dots
+            createDots();
+            
+            // Update the images array
+            images = document.querySelectorAll('.gallery-image');
+        }
+        
+        // Load an image
+        function loadImage(index) {
+            const imgElement = document.getElementById(`img-${index}`);
+            const placeholderDiv = document.getElementById(`img-placeholder-${index}`);
+            const imgWrapper = placeholderDiv.nextElementSibling;
+            
+            // Create image with error handling
+            const img = new Image();
+            
+            img.onload = function() {
+                // Image loaded successfully
+                imgElement.src = this.src;
+                placeholderDiv.style.display = 'none';
+                imgWrapper.style.display = 'block';
+            };
+            
+            img.onerror = function() {
+                // Image failed to load, use fallback
+                console.warn(`Image ${imageConfig.imageNames[index]} not found, using fallback.`);
+                imgElement.src = imageConfig.fallbackImages[index];
+                placeholderDiv.style.display = 'none';
+                imgWrapper.style.display = 'block';
+            };
+            
+            // Try to load the image
+            img.src = imageConfig.imageNames[index];
+        }
+        
+        // Create dots for navigation
+        function createDots() {
+            imageDots.innerHTML = '';
+            
+            for (let i = 0; i < imageConfig.totalImages; i++) {
+                const dot = document.createElement('div');
+                dot.classList.add('dot');
+                if (i === 0) dot.classList.add('active');
+                dot.dataset.index = i;
+                dot.addEventListener('click', () => {
+                    goToImage(i);
+                });
+                imageDots.appendChild(dot);
+            }
+        }
+        
+        // Update gallery
+        function updateGallery() {
+            // Hide all images and wrappers
+            document.querySelectorAll('.image-wrapper').forEach(wrapper => {
+                wrapper.style.display = 'none';
+            });
+            
+            document.querySelectorAll('.gallery-image').forEach(img => {
+                img.classList.remove('active-image');
+                img.style.display = 'none';
+            });
+            
+            // Show current image
+            const currentWrapper = galleryContainer.querySelectorAll('.image-wrapper')[currentIndex];
+            const currentImage = currentWrapper.querySelector('img');
+            
+            currentWrapper.style.display = 'block';
+            currentImage.style.display = 'block';
+            currentImage.classList.add('active-image');
+            
+            // Update counter and caption
+            document.getElementById('current-img').textContent = currentIndex + 1;
+            imageCaption.textContent = imageConfig.captions[currentIndex];
+            
+            // Update dots
+            document.querySelectorAll('.dot').forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentIndex);
+            });
+        }
+        
+        function goToImage(index) {
+            currentIndex = index;
+            if (currentIndex < 0) currentIndex = imageConfig.totalImages - 1;
+            if (currentIndex >= imageConfig.totalImages) currentIndex = 0;
+            updateGallery();
+        }
+        
+        function nextImage() {
+            goToImage(currentIndex + 1);
+        }
+        
+        function prevImage() {
+            goToImage(currentIndex - 1);
+        }
+        
+        // Auto-advance images every 5 seconds
+        let slideInterval = setInterval(nextImage, 5000);
+        
+        // Reset interval when user interacts
+        function resetInterval() {
+            clearInterval(slideInterval);
+            slideInterval = setInterval(nextImage, 5000);
+        }
+        
+        // Event listeners
+        prevBtn.addEventListener('click', () => {
+            prevImage();
+            resetInterval();
+        });
+        
+        nextBtn.addEventListener('click', () => {
+            nextImage();
+            resetInterval();
+        });
+        
+        // Initialize the gallery
+        initGallery();
+        
+        // Popup message functionality
+        const popupOverlay = document.getElementById('popup-overlay');
+        const openPopupBtn = document.getElementById('open-popup-btn');
+        const closePopupBtn = document.getElementById('popup-close');
+        
+        openPopupBtn.addEventListener('click', () => {
+            popupOverlay.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        });
+        
+        closePopupBtn.addEventListener('click', () => {
+            popupOverlay.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        });
+        
+        popupOverlay.addEventListener('click', (e) => {
+            if (e.target === popupOverlay) {
+                popupOverlay.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+        
+        // Add floating hearts
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.innerHTML = '❤️';
+            heart.style.position = 'fixed';
+            heart.style.fontSize = Math.random() * 30 + 20 + 'px';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.top = '105vh';
+            heart.style.opacity = '0.8';
+            heart.style.zIndex = '1';
+            heart.style.pointerEvents = 'none';
+            document.body.appendChild(heart);
+            
+            // Animation
+            const duration = Math.random() * 12 + 8;
+            heart.animate([
+                { transform: 'translateY(0) rotate(0deg)', opacity: 0.9 },
+                { transform: `translateY(-120vh) rotate(${Math.random() * 360}deg)`, opacity: 0 }
+            ], {
+                duration: duration * 1000,
+                easing: 'linear'
+            });
+            
+            // Remove heart after animation
+            setTimeout(() => {
+                heart.remove();
+            }, duration * 1000);
+        }
+        
+        // Create initial hearts
+        for (let i = 0; i < 10; i++) {
+            setTimeout(() => createHeart(), i * 600);
+        }
+        
+        // Keep creating hearts occasionally
+        setInterval(createHeart, 3000);
+        
+        // Show popup automatically after viewing all images
+        let imagesViewed = new Set([0]);
+        
+        function checkAllImagesViewed() {
+            if (imagesViewed.size === imageConfig.totalImages) {
+                // All images have been viewed, show popup after a delay
+                setTimeout(() => {
+                    if (popupOverlay.style.display !== 'flex') {
+                        popupOverlay.style.display = 'flex';
+                        document.body.style.overflow = 'hidden';
+                    }
+                }, 2000);
+            }
+        }
+        
+        // Track which images have been viewed
+        nextBtn.addEventListener('click', () => {
+            imagesViewed.add(currentIndex + 1);
+            checkAllImagesViewed();
+        });
+        
+        prevBtn.addEventListener('click', () => {
+            imagesViewed.add(currentIndex - 1);
+            checkAllImagesViewed();
+        });
+        
+        // Also track dot clicks
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('dot')) {
+                const index = parseInt(e.target.dataset.index);
+                imagesViewed.add(index);
+                checkAllImagesViewed();
+            }
+        });
+        
+        // Function to update image paths if needed
+        function updateImagePaths() {
+            // If your images are in a different folder, update the paths here
+            // Example: if images are in an "images" folder
+            // imageConfig.imageNames = imageConfig.imageNames.map(name => `images/${name}`);
+        }
+        
+        // Call this if your images are in a subfolder
+        // updateImagePaths();
+    </script>
+</body>
+</html>
